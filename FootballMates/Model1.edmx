@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FootballMatesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TblClub">
+          <Key>
+            <PropertyRef Name="ClubId" />
+          </Key>
+          <Property Name="ClubId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClubName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="Stadium" Type="nvarchar" MaxLength="100" />
+          <Property Name="YearFounded" Type="int" />
+          <Property Name="ClubLogo" Type="varbinary(max)" />
+          <Property Name="ClubDescription" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TblManager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClubId" Type="int" />
+          <Property Name="YearJoined" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ManagerImage" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblPlayer">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClubId" Type="int" />
+          <Property Name="YearJoined" Type="int" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="JerseyNumber" Type="int" />
+          <Property Name="PositionId" Type="int" />
+          <Property Name="PlayerImage" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblPosition">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__TblManage__ClubI__398D8EEE">
+          <End Role="TblClub" Type="Self.TblClub" Multiplicity="0..1" />
+          <End Role="TblManager" Type="Self.TblManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblClub">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="TblManager">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblPlayer__ClubI__3E52440B">
+          <End Role="TblClub" Type="Self.TblClub" Multiplicity="0..1" />
+          <End Role="TblPlayer" Type="Self.TblPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblClub">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="TblPlayer">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblPlayer__Posit__3F466844">
+          <End Role="TblPosition" Type="Self.TblPosition" Multiplicity="0..1" />
+          <End Role="TblPlayer" Type="Self.TblPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblPosition">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="TblPlayer">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sProc_Club_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClubId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sProc_Club_Read" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClubId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sProc_Club_ReadEverything" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sProc_Club_Write" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClubId" Type="int" Mode="In" />
+          <Parameter Name="ClubName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+          <Parameter Name="Stadium" Type="nvarchar" Mode="In" />
+          <Parameter Name="YearFounded" Type="int" Mode="In" />
+          <Parameter Name="ClubLogo" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="FootballMatesModelStoreContainer">
+          <EntitySet Name="TblClub" EntityType="Self.TblClub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblManager" EntityType="Self.TblManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblPlayer" EntityType="Self.TblPlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblPosition" EntityType="Self.TblPosition" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TblManage__ClubI__398D8EEE" Association="Self.FK__TblManage__ClubI__398D8EEE">
+            <End Role="TblClub" EntitySet="TblClub" />
+            <End Role="TblManager" EntitySet="TblManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblPlayer__ClubI__3E52440B" Association="Self.FK__TblPlayer__ClubI__3E52440B">
+            <End Role="TblClub" EntitySet="TblClub" />
+            <End Role="TblPlayer" EntitySet="TblPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblPlayer__Posit__3F466844" Association="Self.FK__TblPlayer__Posit__3F466844">
+            <End Role="TblPosition" EntitySet="TblPosition" />
+            <End Role="TblPlayer" EntitySet="TblPlayer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FootballMatesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblClub">
+          <Key>
+            <PropertyRef Name="ClubId" />
+          </Key>
+          <Property Name="ClubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Stadium" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="YearFounded" Type="Int32" />
+          <Property Name="ClubLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TblManagers" Relationship="Self.FK__TblManage__ClubI__398D8EEE" FromRole="TblClub" ToRole="TblManager" />
+          <NavigationProperty Name="TblPlayers" Relationship="Self.FK__TblPlayer__ClubI__3E52440B" FromRole="TblClub" ToRole="TblPlayer" />
+          <Property Name="ClubDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblManager">
+          <Key>
+            <PropertyRef Name="ManagerId" />
+          </Key>
+          <Property Name="ManagerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubId" Type="Int32" />
+          <Property Name="YearJoined" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TblClub" Relationship="Self.FK__TblManage__ClubI__398D8EEE" FromRole="TblManager" ToRole="TblClub" />
+        </EntityType>
+        <EntityType Name="TblPlayer">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubId" Type="Int32" />
+          <Property Name="YearJoined" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="JerseyNumber" Type="Int32" />
+          <Property Name="PositionId" Type="Int32" />
+          <Property Name="PlayerImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TblClub" Relationship="Self.FK__TblPlayer__ClubI__3E52440B" FromRole="TblPlayer" ToRole="TblClub" />
+          <NavigationProperty Name="TblPosition" Relationship="Self.FK__TblPlayer__Posit__3F466844" FromRole="TblPlayer" ToRole="TblPosition" />
+        </EntityType>
+        <EntityType Name="TblPosition">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblPlayers" Relationship="Self.FK__TblPlayer__Posit__3F466844" FromRole="TblPosition" ToRole="TblPlayer" />
+        </EntityType>
+        <Association Name="FK__TblManage__ClubI__398D8EEE">
+          <End Role="TblClub" Type="Self.TblClub" Multiplicity="0..1" />
+          <End Role="TblManager" Type="Self.TblManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblClub">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="TblManager">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblPlayer__ClubI__3E52440B">
+          <End Role="TblClub" Type="Self.TblClub" Multiplicity="0..1" />
+          <End Role="TblPlayer" Type="Self.TblPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblClub">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="TblPlayer">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblPlayer__Posit__3F466844">
+          <End Role="TblPosition" Type="Self.TblPosition" Multiplicity="0..1" />
+          <End Role="TblPlayer" Type="Self.TblPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblPosition">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="TblPlayer">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FootballMatesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblClubs" EntityType="Self.TblClub" />
+          <EntitySet Name="TblManagers" EntityType="Self.TblManager" />
+          <EntitySet Name="TblPlayers" EntityType="Self.TblPlayer" />
+          <EntitySet Name="TblPositions" EntityType="Self.TblPosition" />
+          <AssociationSet Name="FK__TblManage__ClubI__398D8EEE" Association="Self.FK__TblManage__ClubI__398D8EEE">
+            <End Role="TblClub" EntitySet="TblClubs" />
+            <End Role="TblManager" EntitySet="TblManagers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblPlayer__ClubI__3E52440B" Association="Self.FK__TblPlayer__ClubI__3E52440B">
+            <End Role="TblClub" EntitySet="TblClubs" />
+            <End Role="TblPlayer" EntitySet="TblPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblPlayer__Posit__3F466844" Association="Self.FK__TblPlayer__Posit__3F466844">
+            <End Role="TblPosition" EntitySet="TblPositions" />
+            <End Role="TblPlayer" EntitySet="TblPlayers" />
+          </AssociationSet>
+          <FunctionImport Name="sProc_Club_Delete">
+          <Parameter Name="ClubId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sProc_Club_Read" ReturnType="Collection(FootballMatesModel.sProc_Club_Read_Result)">
+          <Parameter Name="ClubId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sProc_Club_ReadEverything" ReturnType="Collection(FootballMatesModel.sProc_Club_ReadEverything_Result)" />
+          <FunctionImport Name="sProc_Club_Write" ReturnType="Collection(Decimal)">
+            <Parameter Name="ClubId" Mode="In" Type="Int32" />
+            <Parameter Name="ClubName" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="Stadium" Mode="In" Type="String" />
+            <Parameter Name="YearFounded" Mode="In" Type="Int32" />
+            <Parameter Name="ClubLogo" Mode="In" Type="Binary" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="sProc_Club_Read_Result">
+          <Property Type="Int32" Name="ClubId" Nullable="false" />
+          <Property Type="String" Name="ClubName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Stadium" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="YearFounded" Nullable="true" />
+          <Property Type="Binary" Name="ClubLogo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sProc_Club_ReadEverything_Result">
+          <Property Type="Int32" Name="ClubId" Nullable="false" />
+          <Property Type="String" Name="ClubName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Stadium" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="YearFounded" Nullable="true" />
+          <Property Type="Binary" Name="ClubLogo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FootballMatesModelStoreContainer" CdmEntityContainer="FootballMatesEntities">
+          <EntitySetMapping Name="TblClubs">
+            <EntityTypeMapping TypeName="FootballMatesModel.TblClub">
+              <MappingFragment StoreEntitySet="TblClub">
+                <ScalarProperty Name="ClubDescription" ColumnName="ClubDescription" />
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Stadium" ColumnName="Stadium" />
+                <ScalarProperty Name="YearFounded" ColumnName="YearFounded" />
+                <ScalarProperty Name="ClubLogo" ColumnName="ClubLogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblManagers">
+            <EntityTypeMapping TypeName="FootballMatesModel.TblManager">
+              <MappingFragment StoreEntitySet="TblManager">
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="YearJoined" ColumnName="YearJoined" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ManagerImage" ColumnName="ManagerImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblPlayers">
+            <EntityTypeMapping TypeName="FootballMatesModel.TblPlayer">
+              <MappingFragment StoreEntitySet="TblPlayer">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="YearJoined" ColumnName="YearJoined" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="JerseyNumber" ColumnName="JerseyNumber" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="PlayerImage" ColumnName="PlayerImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblPositions">
+            <EntityTypeMapping TypeName="FootballMatesModel.TblPosition">
+              <MappingFragment StoreEntitySet="TblPosition">
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sProc_Club_Delete" FunctionName="FootballMatesModel.Store.sProc_Club_Delete" />
+          <FunctionImportMapping FunctionImportName="sProc_Club_Read" FunctionName="FootballMatesModel.Store.sProc_Club_Read">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballMatesModel.sProc_Club_Read_Result">
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Stadium" ColumnName="Stadium" />
+                <ScalarProperty Name="YearFounded" ColumnName="YearFounded" />
+                <ScalarProperty Name="ClubLogo" ColumnName="ClubLogo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sProc_Club_ReadEverything" FunctionName="FootballMatesModel.Store.sProc_Club_ReadEverything">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FootballMatesModel.sProc_Club_ReadEverything_Result">
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="ClubName" ColumnName="ClubName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Stadium" ColumnName="Stadium" />
+                <ScalarProperty Name="YearFounded" ColumnName="YearFounded" />
+                <ScalarProperty Name="ClubLogo" ColumnName="ClubLogo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sProc_Club_Write" FunctionName="FootballMatesModel.Store.sProc_Club_Write" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

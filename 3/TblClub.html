@@ -1,0 +1,97 @@
+
+
+
+                        <div class="col-lg-6">
+	                        <div class="mb-3">
+
+                        <span class="mandatory"></span>
+
+                <label for="txtClubName" class="form-label">ClubName</label>
+		
+			<asp:TextBox ID="txtClubName" 
+			runat="server" 
+			CssClass="form-control" 
+			MaxLength="100">
+			</asp:TextBox>
+
+                <asp:RequiredFieldValidator ID="rfv1" 
+			runat="server" 
+			ControlToValidate="txtClubName" 
+			Display="Dynamic" 
+			ErrorMessage="ClubName is required." 
+			SetFocusOnError="true" 
+			ValidationGroup="VGroup">required
+			</asp:RequiredFieldValidator>
+
+	                    </div>
+                    </div>
+
+
+
+                        <div class="col-lg-6">
+	                        <div class="mb-3">
+
+                <label for="txtCountry" class="form-label">Country</label>
+		
+			<asp:TextBox ID="txtCountry" 
+			runat="server" 
+			CssClass="form-control" 
+			MaxLength="100">
+			</asp:TextBox>
+
+	                    </div>
+                    </div>
+
+
+
+                        <div class="col-lg-6">
+	                        <div class="mb-3">
+
+                <label for="txtStadium" class="form-label">Stadium</label>
+		
+			<asp:TextBox ID="txtStadium" 
+			runat="server" 
+			CssClass="form-control" 
+			MaxLength="100">
+			</asp:TextBox>
+
+	                    </div>
+                    </div>
+
+
+
+                        <div class="col-lg-6">
+	                        <div class="mb-3">
+
+                <label for="txtYearFounded" class="form-label">YearFounded</label>
+		
+			<asp:TextBox ID="txtYearFounded" 
+			runat="server" 
+			CssClass="form-control" 
+			MaxLength="">
+			</asp:TextBox>
+
+	                    </div>
+                    </div>
+
+
+
+                        <div class="col-lg-6">
+	                        <div class="mb-3">
+
+                <label for="txtClubLogo" class="form-label">ClubLogo</label>
+		
+			<asp:TextBox ID="txtClubLogo" 
+			runat="server" 
+			CssClass="form-control" 
+			MaxLength="-1">
+			</asp:TextBox>
+
+	                    </div>
+                    </div>
+this.txtClubId.Text=string.Empty;
+this.txtClubName.Text=string.Empty;
+this.txtCountry.Text=string.Empty;
+this.txtStadium.Text=string.Empty;
+this.txtYearFounded.Text=string.Empty;
+this.txtClubLogo.Text=string.Empty;

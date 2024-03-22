@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        /* Custom CSS for About page */
+        
 .club-logo-container {
     display: flex;
     justify-content: center;
@@ -12,36 +12,36 @@
 .club-logo {
     max-width: 100%;
     height: auto;
-    border: 1px solid #ECECEC; /* Light Gray */
+    border: 1px solid #ECECEC;
     border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); 
 }
 
 .club-details {
-    border: 1px solid #f2f2f0; /* Light Gray */
+    border: 1px solid #f2f2f0;
     border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); 
     padding: 20px;
 }
 
 .divider {
-    border-top: 1px solid #ECECEC; /* Light Gray */
+    border-top: 1px solid #ECECEC; 
     margin: 10px 0;
 }
 
 .club-name {
-    color: #2C2C54; /* Dark Indigo */
+    color: #2C2C54;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .club-detail {
-    color: #474787; /* Deep Purple-Gray */
+    color: #474787; 
     margin-bottom: 5px;
 }
 
         .club-description {
-            color: #AAABB8; /* Cool Gray */
+            color: #AAABB8;
             margin-top: 20px;
             line-height: 1.5;
         }
@@ -49,19 +49,19 @@
     .manager-image {
     max-width: 100%;
     height: auto;
-    border: 1px solid #ECECEC; /* Light Gray */
+    border: 1px solid #ECECEC; 
     border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .manager-details {
-    background-color: #610c26; /* Burgundy */
+    background-color: #610c26;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
 
 .manager-name {
-    color: #ffffff; /* White text */
+    color: #ffffff; 
     margin-bottom: 0;
 }
 
@@ -75,13 +75,11 @@
     </style>
     <div class="container">
         <div class="row">
-            <!-- Left column with club logo -->
             <div class="col-md-4">
                 <div class="club-logo-container">
                     <img id="ClubLogoImage" class="club-logo" runat="server" alt="Club Logo" />
                 </div>
             </div>
-            <!-- Right column with club details -->
             <div class="col-md-8">
                 <div class="card club-details">
                     <div class="card-body">
@@ -103,7 +101,6 @@
 
     <div class="container">
     <div class="row">
-        <!-- Manager details card (left column) -->
         <div class="col-md-4">
             <div id="ManagerCard" runat="server" class="card manager-details text-white">
                 <div class="card-header">
@@ -116,9 +113,7 @@
                 </div>
             </div>
         </div>
-        <!-- Table (right column) -->
         <div class="col-md-8">
-            <!-- Add your table here -->
         </div>
     </div>
 </div>

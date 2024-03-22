@@ -33,7 +33,7 @@ namespace FootballMates
                 {
                     ClubId = c.ClubId,
                     ClubName = c.ClubName,
-                    ClubLogoBase64 = Convert.ToBase64String(c.ClubLogo) // Convert byte[] to Base64 string
+                    ClubLogoBase64 = Convert.ToBase64String(c.ClubLogo) 
                 }).ToList();
         }
 
@@ -62,7 +62,6 @@ namespace FootballMates
         {
             Button btn = (Button)sender;
             int clubId = Convert.ToInt32(btn.CommandArgument);
-            // Perform actions based on the club ID, such as redirecting to another page
             Response.Redirect($"About.aspx?ClubId={clubId}");
         }
     }
